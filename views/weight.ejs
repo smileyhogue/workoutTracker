@@ -1,8 +1,9 @@
 <h1 class="mt-4">Body Weight</h1>
+<br>
 <p class="lead mb-4"><%= name %>'s Body Weight Over Time</p>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <%- include ("./messages") %>
-
+<br>
 <canvas id="myChart" ></canvas>
 <script>
     const labels = [<% for (let i = 0; i < weights.length; i++) { %>"<%= moment(weights[i].createdAt).format('MM/D/YY') %>",<% } %>];
@@ -11,7 +12,7 @@
       labels: labels,
       datasets: [{
         label: 'Weight',
-        backgroundColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgb(235, 115, 142)',
         borderColor: 'rgb(255, 99, 132)',
         data: [<% for (let i = 0; i < weights.length; i++) { %><%= weights[i].weight %>,<% } %>
         ],
@@ -21,12 +22,24 @@
     const config = {
       type: 'line',
       data: data,
-      options: {}
+      options: {
+          elements: {
+              point: {
+                  radius: 3,
+                  hitRadius: 10,
+                  hoverRadius: 15,
+                  hoverBorderWidth: 3
+              },
+              line: {
+                    tension: 0.25
+              }
+          }
+      }
     };
-  </script>
-  <script>
-    const myChart = new Chart(
-      document.getElementById('myChart'),
-      config
-    );
-  </script>
+</script>
+<script>
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+</script>

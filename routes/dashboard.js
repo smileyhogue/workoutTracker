@@ -15,7 +15,6 @@ const workoutController = require('../controllers/workoutController')
 router.get('/add', ensureAuthenticated, function(req, res) {
     workoutController.getWorkouts(function(err, workouts) {
         if (err) console.log(err);
-        console.log (workouts);
         res.render('add', {
             workouts: workouts,
             name: req.user.name,

@@ -7,7 +7,6 @@ var moment = require('moment');
 router.get('/weight', ensureAuthenticated, function(req, res) {
     editController.getAllWeight(function(err, weights) {
         if (err) console.log(err);
-        console.log (weights);
         res.render('weight', {
             weights: weights,
             name: req.user.name,

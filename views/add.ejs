@@ -1,5 +1,4 @@
-<h1 class="mt-4">Edit</h1>
-<p class="lead mb-4">Add a <%= workout %> workout</p>
+<h1 class="mt-4">Add a <%= workout %> workout</h1>
 <%- include ("./messages") %>
 
 <!--if <%= workout %> is weight-->
@@ -21,6 +20,7 @@
             <label for="weight">Weight</label>
             <input type="number" class="form-control" id="weight" name="weight" value="" placeholder="How much weight?">
             <!--isMaxAttempt check box-->
+            <br>
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="isMaxAttempt" name="isMaxAttempt" value="">
                 <label class="form-check-label" for="isMaxAttempt">Is this a max attempt?</label>
