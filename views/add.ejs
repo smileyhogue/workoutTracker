@@ -1,8 +1,5 @@
-<p><%= workoutList %></p>
 <h1 class="mt-4">Edit</h1>
-<p class="lead mb-4">Welcome <%= name %></p>
-<p class = "lead mb-4">Your id is <%= id %></p>
-<p class = "lead mb-4">Your edit item: "<%= workout %>"</p>
+<p class="lead mb-4">Add a <%= workout %> workout</p>
 <%- include ("./messages") %>
 
 <!--if <%= workout %> is weight-->
@@ -13,8 +10,8 @@
         <div class="form-group">
             <label for="exercise">Exercise</label>
             <select id="exercise" name="exercise" class="form-control">
-              <% for (let i = 0; i < workoutList.length; i++) { %>
-                <option value="<%= workoutList[i].workoutId %>" name="<%= workoutList[i].WorkoutName %>"> </option>
+              <% for (let i = 0; i < workouts.length; i++) { %>
+                <option value="<%= workouts[i].workoutId %>" name="<%= workouts[i].workoutName %>"><%= workouts[i].workoutName %></option>
                 <% } %>
             </select>
             <label for="reps">Reps</label>
@@ -23,6 +20,11 @@
             <input type="number" class="form-control" id="sets" name="sets" value="" placeholder="How many sets?">
             <label for="weight">Weight</label>
             <input type="number" class="form-control" id="weight" name="weight" value="" placeholder="How much weight?">
+            <!--isMaxAttempt check box-->
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="isMaxAttempt" name="isMaxAttempt" value="">
+                <label class="form-check-label" for="isMaxAttempt">Is this a max attempt?</label>
+            </div>
             <input type="hidden" name="id" value="<%= id %>">
             <input type="hidden" name="name" value="<%= name %>">
             <input type="hidden" name="workout" value="<%= workout %>">

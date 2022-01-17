@@ -6,14 +6,10 @@ const LUWeightWorkoutSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-    WorkoutName: {
+    workoutName: {
     type: String,
     required: true
-    },
-    WorkoutValue: {
-        type: String,
-        required: true
-        }
+    }
 }, { timestamps: true });
 
 const LUWeightWorkout = mongoose.model('LUWeightWorkout', LUWeightWorkoutSchema);

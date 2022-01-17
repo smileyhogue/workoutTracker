@@ -1,0 +1,32 @@
+<h1 class="mt-4">Body Weight</h1>
+<p class="lead mb-4"><%= name %>'s Body Weight Over Time</p>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<%- include ("./messages") %>
+
+<canvas id="myChart" ></canvas>
+<script>
+    const labels = [<% for (let i = 0; i < weights.length; i++) { %>"<%= moment(weights[i].createdAt).format('MM/D/YY') %>",<% } %>];
+  
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: 'Weight',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: [<% for (let i = 0; i < weights.length; i++) { %><%= weights[i].weight %>,<% } %>
+        ],
+      }]
+    };
+  
+    const config = {
+      type: 'line',
+      data: data,
+      options: {}
+    };
+  </script>
+  <script>
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+  </script>
