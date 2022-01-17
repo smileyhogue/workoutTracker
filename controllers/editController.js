@@ -20,7 +20,7 @@ exports.editHandle = (req, res) => {
                 if (err) {
                     req.flash(
                         'error_msg',
-                        'Error resetting password!'
+                        'Error updating weight!'
                     );
                     res.redirect(`/Dashboard`);
                 } else {
@@ -91,4 +91,9 @@ exports.editHandle = (req, res) => {
             });
         }
     }
+}
+
+// The below code does not work. lmao
+exports.getCurrWeight = (id) => {
+    weightTracker.find({userId: '61e48e2f06a0de2e3a583ca9'}).sort({createdAt: -1}).limit(1)
 }

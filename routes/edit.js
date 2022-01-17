@@ -1,13 +1,10 @@
 const express = require('express');
 const router = express.Router();
-
-
-//------------ Importing Controllers ------------//
+const { ensureAuthenticated } = require('../config/checkAuth')
+//------------ Edit Route ------------//
 const editController = require('../controllers/editController')
-
-//------------ Register POST Handle ------------//
-router.post('/dashboard/edit', editController.editHandle);
-router.get('/dashboard/edit', ensureAuthenticated, (req, res) => res.render('edit', {
+router.post('/', editController.editHandle);
+router.get('/', ensureAuthenticated, (req, res) => res.render('edit', {
     name: req.user.name,
     id: req.user.id,
     email: req.user.email,
@@ -16,6 +13,5 @@ router.get('/dashboard/edit', ensureAuthenticated, (req, res) => res.render('edi
     age: req.user.age,
     item: req.query.item
 }));
-
 module.exports = router;
 

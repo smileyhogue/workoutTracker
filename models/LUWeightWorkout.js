@@ -16,6 +16,6 @@ const LUWeightWorkoutSchema = new mongoose.Schema({
         }
 }, { timestamps: true });
 
-const LUWeightWorkoutList = mongoose.model('LUWeightWorkoutList', LUWeightWorkoutSchema);
+const LUWeightWorkout = mongoose.model('LUWeightWorkout', LUWeightWorkoutSchema);
 
-module.exports = LUWeightWorkoutList;
+module.exports = LUWeightWorkout;
