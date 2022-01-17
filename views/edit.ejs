@@ -1,0 +1,56 @@
+<h1 class="mt-4">Edit</h1>
+<p class="lead mb-4">Welcome <%= name %></p>
+<p class = "lead mb-4">Your id is <%= id %></p>
+<p class = "lead mb-4">Your edit item: "<%= item %>"</p>
+<%- include ("./messages") %>
+
+<!-- create form to edit based <%= item %> -->
+<form method="POST">
+    <div class="form-group">
+        <!--if <%= item %> is weight or age-->
+        <% if (item === "weight" || item === "age") { %>
+            <label for="<%= item %>"><%= item %></label>
+            <input type="text" class="form-control" id="<%= item %>" name="<%= item %>" value="">
+            <input type="hidden" name="id" value="<%= id %>">
+            <input type="hidden" name="name" value="<%= name %>">
+            <input type="hidden" name="item" value="<%= item %>">
+        <!--if <%= item %> is height-->
+        <% } else if (item === "height") { %>
+            <label for="<%= item %>">Inches</label>
+            <label for="height">Height</label>
+            <!-- create dropdown range 0-7-->
+            <select id="feet" name="feet" class="form-control">
+              <option value="">Select Height in feet</option>
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+            </select>
+            <!-- create dropdown range 0-11-->
+            <select id="inches" name="inches" class="form-control">
+              <option value="">Select Height in inches</option>
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+            </select>
+            <input type="hidden" name="id" value="<%= id %>">
+            <input type="hidden" name="name" value="<%= name %>">
+            <input type="hidden" name="item" value="<%= item %>">
+        <% } %>
+        
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -1,0 +1,71 @@
+<h1 class="mt-4">Dashboard</h1>
+<p class="lead mb-4">Welcome <%= name %></p>
+<p class = "lead mb-4">Your id is <%= id %></p>
+<%- include ("./messages") %>
+<!-- create div to hold weight hight and age -->
+<div class="row edit">
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Weight</h5>
+                <p class="card-text"><%= weight %> lbs</p>
+            </div>
+            <!-- Create Button to edit weight -->
+            <div class="card-footer">
+                <a href="/dashboard/edit?item=weight" class="btn btn-primary">Edit</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Height</h5>
+                <p class="card-text"><%= height %></p>
+            </div>
+            <!-- Create Button to edit height -->
+            <div class="card-footer">
+                <a href="/dashboard/edit?item=height" class="btn btn-primary">Edit</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Age</h5>
+                <p class="card-text"><%= age %> years old</p>
+            </div>
+            <!-- Create Button to edit age -->
+            <div class="card-footer">
+                <a href="/dashboard/edit?item=age" class="btn btn-primary">Edit</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<!--Create div with button to add new Weight workout or add new cardio workout-->
+<div class="row workout">
+    <div class="col-lg">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Add New Weight Workout</h5>
+                <p class="card-text">Add a new workout to your weight log</p>
+            </div>
+            <div class="card-footer">
+                <a href="/dashboard/add?workout=weight" class="btn btn-primary">Add</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Add New Cardio Workout</h5>
+                <p class="card-text">Add a new workout to your cardio log</p>
+            </div>
+            <div class="card-footer">
+                <a href="/dashboard/add?workout=cardio" class="btn btn-primary">Add</a>
+            </div>
+        </div>
+    </div>
+</div>
