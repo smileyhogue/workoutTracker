@@ -9,14 +9,16 @@ const JWT_RESET_KEY = "jwtreset987";
 
 //------------ User Model ------------//
 const User = require('../models/User');
+const { features } = require('process');
 
 //------------ Register Handle ------------//
 exports.registerHandle = (req, res) => {
-    const { name, email, password, password2 } = req.body;
+    const { name, email, password, password2, weight, feet, inches , age } = req.body;
+    const height = (feet * 12) + +inches;
     let errors = [];
 
     //------------ Checking required fields ------------//
-    if (!name || !email || !password || !password2) {
+    if (!name || !email || !password || !password2 || !weight || !feet || !inches || !age) {
         errors.push({ msg: 'Please enter all fields' });
     }
 
@@ -36,7 +38,10 @@ exports.registerHandle = (req, res) => {
             name,
             email,
             password,
-            password2
+            password2,
+            weight,
+            height,
+            age
         });
     } else {
         //------------ Validation passed ------------//
@@ -49,7 +54,10 @@ exports.registerHandle = (req, res) => {
                     name,
                     email,
                     password,
-                    password2
+                    password2,
+                    weight,
+                    height,
+                    age
                 });
             } else {
 
@@ -64,7 +72,7 @@ exports.registerHandle = (req, res) => {
                 });
                 const accessToken = oauth2Client.getAccessToken()
 
-                const token = jwt.sign({ name, email, password }, JWT_KEY, { expiresIn: '30m' });
+                const token = jwt.sign({ name, email, password, weight, height, age }, JWT_KEY, { expiresIn: '30m' });
                 const CLIENT_URL = 'http://' + req.headers.host;
 
                 const output = `
@@ -87,9 +95,9 @@ exports.registerHandle = (req, res) => {
 
                 // send mail with defined transport object
                 const mailOptions = {
-                    from: '"Auth Admin" <nodejsa@gmail.com>', // sender address
+                    from: '"Workout Tracker" <workouttracker@gmail.com>', // sender address
                     to: email, // list of receivers
-                    subject: "Account Verification: NodeJS Auth ✔", // Subject line
+                    subject: "Account Verification: Workout Tracker ✔", // Subject line
                     generateTextFromHTML: true,
                     html: output, // html body
                 };
@@ -132,7 +140,7 @@ exports.activateHandle = (req, res) => {
                 res.redirect('/auth/register');
             }
             else {
-                const { name, email, password } = decodedToken;
+                const { name, email, password, weight, height, age } = decodedToken;
                 User.findOne({ email: email }).then(user => {
                     if (user) {
                         //------------ User already exists ------------//
@@ -145,7 +153,10 @@ exports.activateHandle = (req, res) => {
                         const newUser = new User({
                             name,
                             email,
-                            password
+                            password,
+                            weight,
+                            height,
+                            age
                         });
 
                         bcryptjs.genSalt(10, (err, salt) => {

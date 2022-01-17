@@ -4926,6 +4926,11 @@ input[type="button"].btn-block {
     display: block;
     padding: 0.5rem 2rem
 }
+.nav-link-logout {
+    display: block;
+    padding: 0.5rem 2rem;
+    align-items: right;
+}
 
 .nav-link:hover,
 .nav-link:focus {
