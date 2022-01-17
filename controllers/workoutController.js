@@ -4,7 +4,7 @@ const User = require('../models/User');
 
 // create function to get workout array from LUWeightWorkout
 exports.getWorkouts = function(cb) {
-    LUWeightWorkout.find({}, cb).sort({ workoutId: 1 });
+    LUWeightWorkout.find({}, cb).sort({ workoutName: 1 });
 };
 
 

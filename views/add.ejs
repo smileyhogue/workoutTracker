@@ -1,4 +1,9 @@
 <h1 class="mt-4">Add a <%= workout %> workout</h1>
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microplugin/0.0.3/microplugin.min.js" integrity="sha512-7amIsiQ/hxbdPNawBZwmWBWPiwQRNEJlxTj6eVO+xmWd71fs79Iydr4rYARHwDf0rKHpysFxWbj64fjPRHbqfA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/js/selectize.min.js" integrity="sha512-JiDSvppkBtWM1f9nPRajthdgTCZV3wtyngKUqVHlAs0d5q72n5zpM3QMOLmuNws2vkYmmLn4r1KfnPzgC/73Mw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sifter/0.5.4/sifter.min.js" integrity="sha512-B60IUvYpG4cibCeQ30J8k/+qtN+fxKAIENb3DL2DVdzIt76IDIynAt92chPEwlCuKejOt//+OZL61i1xsvCIDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <%- include ("./messages") %>
 
 <!--if <%= workout %> is weight-->
@@ -9,6 +14,7 @@
         <div class="form-group">
             <label for="exercise">Exercise</label>
             <select id="exercise" name="exercise" class="form-control">
+                <option disabled selected>Select an exercise</option>
               <% for (let i = 0; i < workouts.length; i++) { %>
                 <option value="<%= workouts[i].workoutId %>" name="<%= workouts[i].workoutName %>"><%= workouts[i].workoutName %></option>
                 <% } %>
@@ -31,9 +37,15 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    <script>
+        $('select').selectize({
+            copyClassesToDropdown: true
+    });
+    </script>
     <% } %>
 <!-- if <%= workout %> is cardio-->
 <% if (workout === "cardio") { %>
     <!-- Say cardio workout -->
     <p class = "lead mb-4">You are editing a cardio workout</p>
     <% } %>
+    
