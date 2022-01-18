@@ -13,7 +13,7 @@ router.get('/workoutList', ensureAuthenticated, function(req, res) {
     });
 });
 router.get('/workoutHistory', ensureAuthenticated, function(req, res) {
-    workoutController.getWeightWorkoutHistory(req.query.workoutId, req.user.id , function(err, workouts) {
+    workoutController.getWeightWorkoutHistory(req.query.workoutId, req.user.id, req.query.maxAttempt, function(err, workouts) {
         if (err) console.log(err);
         console.log(workouts);
         res.send(workouts);

@@ -23,7 +23,7 @@ router.get('/weight', ensureAuthenticated, function(req, res) {
 });
 
 router.get('/lifting', ensureAuthenticated, function(req, res) {
-    workoutController.getWeightWorkoutHistory(1, req.user.id , function(err, weights) {
+    workoutController.getWeightWorkoutHistory(1, req.user.id, "" , function(err, weights) {
         if (err) console.log(err);
         res.render('weightWorkout', {
             weights: weights,
