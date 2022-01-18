@@ -3,9 +3,18 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <%- include ("./messages") %>
 <!-- create Dropdown with options 1, 2, and 3-->
-<select id="workoutSelector" class="form-control">
-  <option>Select Workout</option>
-</select>
+<div id="form-group">
+    <select id="workoutSelector" class="form-control">
+      <option>Select Workout</option>
+    </select>
+    <!--create checkbox for max attempt-->
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="maxAttempt" value="true">
+      <label class="form-check-label" for="maxAttempt">
+        Max Attempt
+      </label>
+    </div>
+</div>
 
 <canvas id="weightChart" ></canvas>
 
@@ -64,9 +73,10 @@
 
 
     document.getElementById("workoutSelector").onchange = changeListener;
+    document.getElementById("maxAttempt").onchange = changeListener;
     
-    async function getWorkoutHistory(value){
-        const response = await fetch( "/api/workoutHistory?workoutId=" + value);
+    async function getWorkoutHistory(value, maxAttempt){
+        const response = await fetch( "/api/workoutHistory?workoutId=" + value + "&maxAttempt=" + maxAttempt);
         return response.json();
     }
 
@@ -76,7 +86,7 @@
     function changeListener(){
         labels.length = 0;
         workoutdata.datasets[0].data.length = 0;;
-        getWorkoutHistory(this.value).then((data) =>
+        getWorkoutHistory(document.getElementById("workoutSelector").value, document.getElementById("maxAttempt").checked).then((data) =>
           data.forEach(function(item) {
               var date = new Date(item.createdAt);
               date = date.toLocaleDateString();

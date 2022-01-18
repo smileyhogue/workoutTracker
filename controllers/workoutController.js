@@ -34,8 +34,12 @@ exports.getWorkouts = function(cb) {
 };
 
 // create function to get workout array from LUWeightWorkout
-exports.getWeightWorkoutHistory = function(workoutId, userId, cb) {
+exports.getWeightWorkoutHistory = function(workoutId, userId, maxAttempt, cb) {
+    if (maxAttempt != "true") {
     workoutHistory.find(({userId: userId, workoutId: workoutId}), cb).sort({ createdAt: 1 });
+    } else {
+    workoutHistory.find(({userId: userId, workoutId: workoutId, isMaxAttempt: maxAttempt}), cb).sort({ createdAt: 1 });
+    }
 };
 
 exports.addHandle = (req, res) => {
