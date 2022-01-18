@@ -12,6 +12,7 @@ router.get('/', ensureAuthenticated, (req, res) => res.render('dash', {
     age: req.user.age
 }));
 const workoutController = require('../controllers/workoutController')
+router.post('/add', workoutController.editHandle);
 router.get('/add', ensureAuthenticated, function(req, res) {
     workoutController.getWorkouts(function(err, workouts) {
         if (err) console.log(err);

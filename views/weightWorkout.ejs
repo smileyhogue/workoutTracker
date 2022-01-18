@@ -1,0 +1,88 @@
+<h1 class="mt-4">Weight Workouts</h1>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<%- include ("./messages") %>
+<!-- create Dropdown with options 1, 2, and 3-->
+<select id="workoutSelector" class="form-control">
+  <option>Select Workout</option>
+</select>
+
+<canvas id="weightChart" ></canvas>
+
+
+
+<script>
+
+    async function getData(){
+        const response = await fetch( "/api/workoutList");
+        return response.json();
+    }
+    getData().then((data) => {
+        const buttonContainer = document.getElementById("workoutSelector");
+        // Loop through items in JSON data..
+        data.forEach(function(item) {
+            const button = document.createElement("option");
+            button.value = item.workoutId;
+            button.innerHTML = item.workoutName;
+            buttonContainer.append(button);
+            });
+    });
+</script>
+<script>
+    var labels = [];
+    var workoutdata = {
+        labels: labels,
+        datasets: [{
+          label: 'Weight',
+          backgroundColor: 'rgb(235, 115, 142)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: [],
+        }]
+      };
+    var config = {
+      type: 'line',
+      data: workoutdata,
+      options: {
+          elements: {
+              point: {
+                  radius: 3,
+                  hitRadius: 10,
+                  hoverRadius: 15,
+                  hoverBorderWidth: 3
+              },
+              line: {
+                    tension: 0.25
+              }
+          }
+      }
+    };
+    console.log(labels);
+    var myChart = new Chart(
+                document.getElementById('weightChart'),
+                config
+            );
+
+
+    document.getElementById("workoutSelector").onchange = changeListener;
+    
+    async function getWorkoutHistory(value){
+        const response = await fetch( "/api/workoutHistory?workoutId=" + value);
+        return response.json();
+    }
+
+
+
+
+    function changeListener(){
+        labels.length = 0;
+        workoutdata.datasets[0].data.length = 0;;
+        getWorkoutHistory(this.value).then((data) =>
+          data.forEach(function(item) {
+              var date = new Date(item.createdAt);
+              date = date.toLocaleDateString();
+              labels.push(date);
+              workoutdata.datasets[0].data.push(item.weight);
+          })).then(() => myChart.update());
+
+    }
+</script>

@@ -55,7 +55,8 @@ app.use('/auth', require('./routes/auth'));
 app.use('/dashboard', require('./routes/dashboard'));
 app.use('/dashboard/edit', require('./routes/edit'));
 app.use('/stats', require('./routes/stats'));
+app.use('/api', require('./routes/api'));
 
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, console.log(`Server running on PORT ${PORT}`));

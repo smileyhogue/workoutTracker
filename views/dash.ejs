@@ -1,6 +1,5 @@
 <h1 class="mt-4">Dashboard</h1>
 <p class="lead mb-4">Welcome <%= name %></p>
-<p class = "lead mb-4">Your id is <%= id %></p>
 <%- include ("./messages") %>
 <!-- create div to hold weight hight and age -->
 <div class="row edit">
@@ -12,7 +11,7 @@
             </div>
             <!-- Create Button to edit weight -->
             <div class="card-footer">
-                <a href="/dashboard/edit?item=weight" class="btn btn-primary">Edit</a>
+                <a href="/dashboard/edit?item=weight" class="btn btn-primary"><span>Edit </span></a>
             </div>
         </div>
     </div>
@@ -24,7 +23,7 @@
             </div>
             <!-- Create Button to edit height -->
             <div class="card-footer">
-                <a href="/dashboard/edit?item=height" class="btn btn-primary">Edit</a>
+                <a href="/dashboard/edit?item=height" class="btn btn-primary"><span>Edit </span></a>
             </div>
         </div>
     </div>
@@ -36,7 +35,7 @@
             </div>
             <!-- Create Button to edit age -->
             <div class="card-footer">
-                <a href="/dashboard/edit?item=age" class="btn btn-primary">Edit</a>
+                <a href="/dashboard/edit?item=age" class="btn btn-primary"><span>Edit </span></a>
             </div>
         </div>
     </div>
@@ -53,7 +52,7 @@
                 <p class="card-text">Add a new workout to your weight log</p>
             </div>
             <div class="card-footer">
-                <a href="/dashboard/add?workout=weight" class="btn btn-primary">Add</a>
+                <a href="/dashboard/add?workout=weight" class="btn btn-primary"><span>Add </span></a>
             </div>
         </div>
     </div>
@@ -64,7 +63,7 @@
                 <p class="card-text">Add a new workout to your cardio log</p>
             </div>
             <div class="card-footer">
-                <a href="/dashboard/add?workout=cardio" class="btn btn-primary">Add</a>
+                <a href="/dashboard/add?workout=cardio" class="btn btn-primary"><span>Add </span></a>
             </div>
         </div>
     </div>

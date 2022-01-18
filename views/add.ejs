@@ -28,14 +28,14 @@
             <!--isMaxAttempt check box-->
             <br>
             <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="isMaxAttempt" name="isMaxAttempt" value="">
+                <input type="checkbox" class="form-check-input" id="isMaxAttempt" name="isMaxAttempt" value="true">
                 <label class="form-check-label" for="isMaxAttempt">Is this a max attempt?</label>
             </div>
             <input type="hidden" name="id" value="<%= id %>">
             <input type="hidden" name="name" value="<%= name %>">
             <input type="hidden" name="workout" value="<%= workout %>">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary"><span>Submit </span></button>
     </form>
     <script>
         $('select').selectize({
@@ -46,6 +46,12 @@
 <!-- if <%= workout %> is cardio-->
 <% if (workout === "cardio") { %>
     <!-- Say cardio workout -->
-    <p class = "lead mb-4">You are editing a cardio workout</p>
+    <p class = "lead mb-4">You are editing a cardio workout.</p>
+    <!--In progress loading-->
+    <!--creat loading circle with test "Development in progress" next to it-->
+    <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <p class="lead">Development in progress</p>
     <% } %>
     
